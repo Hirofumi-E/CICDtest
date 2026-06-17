@@ -38,19 +38,10 @@ jobs:
           ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_NAME }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |
-          docker build -name: Build and Push to ECR
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "Image pushed: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-on:
-  push:
-   
- 
-on:
-  push:
-    branches:REG  TR    br_R      - mainMA  workflow_  
-env:
-  AWS_REGION:hed: $EC  ECR_REPO/$ECR_REPOSITORY:$I  IMAGE_TAG: ${{ github.sha nt
-jobs:
-  build-and-push:
-     |
-  bu      runs-on: ubuck    permissions:
-      idccessfully!"
+      - name: Print success message
+        run: |
+          echo "✅ Docker image pushed to ECR successfully!"
